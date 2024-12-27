@@ -39,5 +39,7 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     }
-  }
+  },
+  // Enable debug mode in development
+  debug: true,
 };
