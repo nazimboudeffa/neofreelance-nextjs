@@ -33,7 +33,8 @@ export async function GET() {
                 company: job.company,
                 type: job.type,
                 location: job.location,
-                salary: job.salary,
+                salaryMin: job.salaryMin,
+                salaryMax: job.salaryMax,
                 createdAt: job.createdAt,
                 slug: job.slug
             }))

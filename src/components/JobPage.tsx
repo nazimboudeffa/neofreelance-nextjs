@@ -1,7 +1,7 @@
 "use client";
 
 import { formatMoney } from "@/lib/utils";
-import { Banknote, Briefcase } from "lucide-react";
+import { Banknote, Briefcase, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Job = {
@@ -11,7 +11,8 @@ type Job = {
   company: string;
   type: string;
   location: string;
-  salary: number;
+  salaryMin: number;
+  salaryMax: number;
   createdAt: Date;
 };
 
@@ -51,12 +52,16 @@ export default function JobPage({
           </div>
           <div className="text-muted-foreground">
             <p className="flex items-center gap-1.5">
+              <MapPin size={16} className="shrink-0" />
+              {job?.location ?? "Worldwide"}
+            </p>
+            <p className="flex items-center gap-1.5">
               <Briefcase size={16} className="shrink-0" />
               {job?.type}
             </p>
             <p className="flex items-center gap-1.5">
               <Banknote size={16} className="shrink-0" />
-              {formatMoney(job?.salary ?? 0)}
+              {formatMoney(job?.salaryMin ?? 0)} - {formatMoney(job?.salaryMax ?? 0)}
             </p>
           </div>
         </div>

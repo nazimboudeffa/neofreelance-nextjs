@@ -1,5 +1,5 @@
 import { formatMoney, relativeDate } from "@/lib/utils";
-import { Banknote, Briefcase, Clock } from "lucide-react";
+import { Banknote, Briefcase, Clock, MapPin } from "lucide-react";
 import Badge from "./Badge";
 
 interface JobListItemProps {
@@ -9,7 +9,8 @@ interface JobListItemProps {
     company : string;
     type : string;
     location : string;
-    salary : number;
+    salaryMin : number;
+    salaryMax : number;
     createdAt : Date;
   };
 }
@@ -21,7 +22,8 @@ export default function JobListItem({
     company,
     type,
     location,
-    salary,
+    salaryMin,
+    salaryMax,
     createdAt,
   },
 }: Readonly<JobListItemProps>) {
@@ -33,13 +35,17 @@ export default function JobListItem({
           <p className="text-muted-foreground">{company}</p>
         </div>
         <div className="text-muted-foreground">
-          <p className="flex items-center gap-1.5 sm:hidden">
+          <p className="flex items-center gap-1.5">
             <Briefcase size={16} className="shrink-0" />
             {type}
           </p>
           <p className="flex items-center gap-1.5">
+            <MapPin size={16} className="shrink-0" />
+            {location || "Worldwide"}
+          </p>
+          <p className="flex items-center gap-1.5">
             <Banknote size={16} className="shrink-0" />
-            {formatMoney(salary)}
+            {formatMoney(salaryMin)} - {formatMoney(salaryMax)}
           </p>
           <p className="flex items-center gap-1.5 sm:hidden">
             <Clock size={16} className="shrink-0" />
@@ -48,7 +54,7 @@ export default function JobListItem({
         </div>
       </div>
       <div className="hidden shrink-0 flex-col items-end justify-between sm:flex">
-        <Badge>{type}</Badge>
+        <Badge>Full Remote</Badge>
         <span className="flex items-center gap-1.5 text-muted-foreground">
           <Clock size={16} />
           {relativeDate(createdAt)}
