@@ -38,10 +38,6 @@ export default function JobListItem({
             {type}
           </p>
           <p className="flex items-center gap-1.5">
-            <Globe2 size={16} className="shrink-0" />
-            {location || "Worldwide"}
-          </p>
-          <p className="flex items-center gap-1.5">
             <Banknote size={16} className="shrink-0" />
             {formatMoney(salary)}
           </p>
