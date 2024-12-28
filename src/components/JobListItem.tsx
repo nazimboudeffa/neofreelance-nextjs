@@ -1,5 +1,5 @@
 import { formatMoney, relativeDate } from "@/lib/utils";
-import { Banknote, Briefcase, Clock, Globe2 } from "lucide-react";
+import { Banknote, Briefcase, Clock } from "lucide-react";
 import Badge from "./Badge";
 
 interface JobListItemProps {
