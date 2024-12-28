@@ -25,6 +25,7 @@ export async function createJobPosting(formData: FormData) {
         await Job.collection.insertOne({
             title: values.title,
             slug: `${toSlug(values.title as string)}-${nanoid(10)}`,
+            skills: Array.isArray(values.skills) ? values.skills : String(values.skills).split(","),
             type: values.type,
             company: values.company,
             location: values.location,

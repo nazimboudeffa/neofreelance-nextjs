@@ -30,6 +30,7 @@ export async function GET() {
             jobs: jobs.map(job => ({
                 _id: job._id.toString(),
                 title: job.title,
+                skills: job.skills,
                 company: job.company,
                 type: job.type,
                 location: job.location,

@@ -6,6 +6,7 @@ interface JobListItemProps {
   job: {
     _id : number;
     title : string;
+    skills : string[];
     company : string;
     type : string;
     location : string;
@@ -19,6 +20,7 @@ export default function JobListItem({
   job: {
     _id,
     title,
+    skills,
     company,
     type,
     location,
@@ -46,6 +48,11 @@ export default function JobListItem({
           <p className="flex items-center gap-1.5">
             <Banknote size={16} className="shrink-0" />
             {formatMoney(salaryMin)} - {formatMoney(salaryMax)}
+          </p>
+          <p className="flex items-center gap-1">
+            {skills.map((skill) => (
+              <Badge key={skill}>{skill}</Badge>
+            ))}
           </p>
           <p className="flex items-center gap-1.5 sm:hidden">
             <Clock size={16} className="shrink-0" />

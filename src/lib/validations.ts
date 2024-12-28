@@ -16,6 +16,7 @@ export const createJobSchema = z
     salaryMin: numericRequiredString.max(9,"Number can't be longer than 9 digits",),
     salaryMax: numericRequiredString.max(9,"Number can't be longer than 9 digits",),
     location: requiredString.max(100),
+    skills: z.array(z.string().max(100)).max(3, "You can't add more than 3 skills"),
   })
 
 export type CreateJobValues = z.infer<typeof createJobSchema>;

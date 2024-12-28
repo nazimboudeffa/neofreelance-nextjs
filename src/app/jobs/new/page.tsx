@@ -28,6 +28,7 @@ import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 import LocationInput from "@/components/LocationInput";
 import { X } from "lucide-react";
+import SkillsInput from "@/components/SkillsInput";
 
 export default function NewJobForm() {
   const { data: session } = useSession();
@@ -54,7 +55,7 @@ export default function NewJobForm() {
 
     Object.entries(values).forEach(([key, value]) => {
       if (value) {
-        formData.append(key, value);
+        formData.append(key, Array.isArray(value) ? value.join(", ") : value);
       }
     });
 
@@ -90,6 +91,22 @@ export default function NewJobForm() {
                   <FormLabel>Job title</FormLabel>
                   <FormControl>
                     <Input {...field} value={field.value ?? ''}/>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={control}
+              name="skills"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Skills</FormLabel>
+                  <FormControl>
+                    <SkillsInput
+                      onLocationSelected={field.onChange}
+                      ref={field.ref}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

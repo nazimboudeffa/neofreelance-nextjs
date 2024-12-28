@@ -8,6 +8,7 @@ interface JobListItemProps {
   job: {
     _id : number;
     title : string;
+    skills : string[];
     company : string;
     type : string;
     location : string;
@@ -21,6 +22,7 @@ export default function JobListItemPublished({
   job: {
     _id,
     title,
+    skills,
     company,
     type,
     location,
@@ -54,10 +56,11 @@ export default function JobListItemPublished({
   };
 
   return (
-    <article className="flex flex-row gap-3 rounded-lg border p-5">
-      <div>
-        <Button variant="destructive" onClick={() => deleteJob(_id)}>Delete</Button>
-      </div>
+    <div className="flex justify-between gap-3">
+    <div>
+      <Button variant="destructive" onClick={() => deleteJob(_id)}>Delete</Button>
+    </div>
+    <article className="flex flex-row gap-3 rounded-lg border p-5 w-full">
       <div id={_id.toString()} className="flex-grow space-y-3">
         <div>
           <h2 className="text-xl font-medium">{title}</h2>
@@ -76,6 +79,11 @@ export default function JobListItemPublished({
             <Banknote size={16} className="shrink-0" />
             {formatMoney(salaryMin)} - {formatMoney(salaryMax)}
           </p>
+          <p className="flex items-center gap-1">
+            {skills.map((skill) => (
+              <Badge key={skill}>{skill}</Badge>
+            ))}
+          </p>
           <p className="flex items-center gap-1.5 sm:hidden">
             <Clock size={16} className="shrink-0" />
             {relativeDate(createdAt)}
@@ -90,5 +98,6 @@ export default function JobListItemPublished({
         </span>
       </div>
     </article>
+    </div>
   );
 }
