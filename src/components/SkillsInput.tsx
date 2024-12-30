@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 interface LocationInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   onLocationSelected: (skills: string[]) => void;
-  knowskills?: string[];
+  knownskills?: string[];
 }
 
 export default forwardRef<HTMLInputElement, LocationInputProps>(
